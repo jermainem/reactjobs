@@ -1,6 +1,7 @@
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const JobPage = ({ deleteJob }) => {
 	const navigate = useNavigate();
@@ -16,7 +17,10 @@ const JobPage = ({ deleteJob }) => {
 			return;
 		} else {
 			deleteJob(jobId);
-			navigate("/jobs");
+
+			toast.success("Job deleted");
+
+			return navigate("/jobs");
 		}
 	};
 
@@ -99,7 +103,7 @@ const JobPage = ({ deleteJob }) => {
 									Manage Job
 								</h3>
 								<Link
-									to={`/jobs/edit/${job.id}`}
+									to={`/edit-job/${job.id}`}
 									className='bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'>
 									Edit Job
 								</Link>
